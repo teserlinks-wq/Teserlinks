@@ -75,9 +75,9 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Model identifiers
 # ---------------------------------------------------------------------------
-_CLAUDE_OPUS_MODEL   = "openrouter/anthropic/claude-opus-4-6"
-_CLAUDE_SONNET_MODEL = "openrouter/anthropic/claude-sonnet-4-6"
-_GPT_MODEL           = "openrouter/openai/gpt-5.4"
+_CLAUDE_OPUS_MODEL   = "openrouter/openai/o3"
+_CLAUDE_SONNET_MODEL = "openrouter/openai/o3"
+_GPT_MODEL           = "openrouter/openai/o3"
 
 
 # ===========================================================================
@@ -1419,15 +1419,15 @@ if __name__ == "__main__":
     client = MetaculusClient()
 
     if run_mode == "tournament":
-        r1 = asyncio.run(teserlinks.forecast_on_tournament(client.CURRENT_AI_COMPETITION_ID, return_exceptions=True))
-        r2 = asyncio.run(teserlinks.forecast_on_tournament(client.CURRENT_MINIBENCH_ID,       return_exceptions=True))
-        r3 = asyncio.run(teserlinks.forecast_on_tournament("market-pulse-26q1",               return_exceptions=True))
+        r1 = asyncio.run(teserlinks.forecast_on_tournament("33022", return_exceptions=True))
+        r2 = asyncio.run(teserlinks.forecast_on_tournament("33022", return_exceptions=True))
+        r3 = asyncio.run(teserlinks.forecast_on_tournament("33022", return_exceptions=True))
         forecast_reports = r1 + r2 + r3
 
     elif run_mode == "metaculus_cup":
         teserlinks.skip_previously_forecasted_questions = False
         forecast_reports = asyncio.run(
-            teserlinks.forecast_on_tournament(client.CURRENT_METACULUS_CUP_ID, return_exceptions=True)
+            teserlinks.forecast_on_tournament("33022", return_exceptions=True)
         )
 
     elif run_mode == "test_questions":
